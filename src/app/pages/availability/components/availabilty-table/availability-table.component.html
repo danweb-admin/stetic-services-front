@@ -1,0 +1,85 @@
+<mat-card class="mat-card-min availability-table">
+    <mat-card-title class="availability-table__header">
+    </mat-card-title>
+    <div class="row" style="margin-left: 20px; margin-bottom: 20px; overflow-x: auto;">
+        <div class="col">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div  class="row availability-table-wrapper__search">
+                    <div class="availability-table-wrapper__separate">
+                        <mat-form-field appearance="outline" class="form-outline">
+                            <mat-label>Equipamento</mat-label>
+                            <mat-select multiple formControlName="equipamentId" class="availability-table-wrapper__search-input" placeholder="Equipamento">
+                                <mat-option *ngFor="let item of equipamentResult" [value]="item.id">{{item.name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="availability-table-wrapper__separate">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Mês</mat-label>
+                            <mat-select formControlName="month" class="availability-table-wrapper__search-input" placeholder="Mês" (selectionChange)="change()">
+                                <mat-option *ngFor="let item of months" [value]="item.id">{{item.month}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="availability-table-wrapper__separate">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Ano</mat-label>
+                            <mat-select formControlName="year" class="availability-table-wrapper__search-input" placeholder="Ano" (selectionChange)="change()">
+                                <mat-option [value]="2022">2022</mat-option>
+                                <mat-option [value]="2023">2023</mat-option>
+                                <mat-option [value]="2024">2024</mat-option>
+                                <mat-option [value]="2025">2025</mat-option>
+                                <mat-option [value]="2026">2026</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+    
+                    <button class="btn-submit"mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!form.valid">Buscar</button>
+                    <button class="btn-submit"mat-raised-button color="second" (click)="clear()">Limpar</button>
+                    <button class="btn-submit"mat-raised-button color="second" (click)="download()" [disabled]="list.length == 0">  <mat-icon class="icon-cloud-download">cloud_download</mat-icon><span>Download</span> </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <mat-card-content>
+        <div id="table-scroll" class="table-scroll" *ngIf="showTable">
+            <div class="table-wrap" >
+                <table class="main-table" id="main-table" >
+                    
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th colspan="6"><h4>{{monthYear_}}</h4></th>
+                        </tr>
+                        <tr>
+                            <th class="fixed-side">Equipamentos</th>
+                            <th scope="col" *ngFor="let item of days_" [class.sunday]="item.isoWeekday()===7" >{{item | date:'dd' : '' : 'pt-BR'}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of list.List"> 
+                            <th class="fixed-side">{{item.Equipament}}</th>
+                            <td *ngFor="let day of item.DayList" [ngClass]="day.Available ? 'green' : 'red'"></td>
+                        </tr>
+                        
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td></td>
+                            <td colspan="2">
+                                <span class="subtitle-available"></span>
+                                <span class="display">Disponível</span>
+                            </td>
+                            <td colspan="4">
+                                <span class="subtitle-unavailable"></span>
+                                <span class="display">Indisponível</span>
+                            </td>
+                          </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+        
+    </mat-card-content>
+</mat-card>
