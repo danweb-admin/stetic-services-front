@@ -67,13 +67,13 @@ div.mat-dialog-content {
   background-color: lightskyblue;
 }
 
-// @media (max-width: 700px)
-// {
-//   mat-card.mat-card
-//    {
-//     min-height: 400px !important;
-//    }
-// }
+@media (max-width: 1000px)
+{
+  mat-card.mat-card-min
+   {
+    min-height: 600px !important;
+   }
+}
 
 @media (min-width: 1200px)
 {

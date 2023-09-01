@@ -17,10 +17,12 @@
                 <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
                 <mat-datepicker #dp></mat-datepicker>
             </div>
-            <button mat-icon-button (click)="openDialog(null)">
+            <button class="tooltip" mat-icon-button (click)="openDialog(null)">
+                <span class="tooltiptext">Adiciona uma locação</span>
                 <mat-icon>control_point</mat-icon>
             </button>
-            <button mat-icon-button (click)="openDialogStickyNotes()">
+            <button mat-icon-button class="tooltip" (click)="openDialogStickyNotes()">
+                <span class="tooltiptext">Adiciona uma anotação</span>
                 <mat-icon>comment</mat-icon>
             </button>
         </div>
@@ -30,26 +32,40 @@
         <table class="calendar-table__table" >
             <thead>
                 <th style="text-align: left;" class="padding-left-5"> EQUIPAMENTO </th>
+                <th style="text-align: left;" class="padding-left-5"> PONTEIRAS </th>
                 <th style="text-align: left;" class="padding-left-5"> LOCATÁRIO </th>
                 <th style="text-align: left;" class="padding-left-5"> HORÁRIO </th>
                 <th style="text-align: left;" class="padding-left-5"> TÉCNICA </th>
                 <th style="text-align: left;" class="padding-left-5"> STATUS </th>
                 <th style="text-align: left;" class="padding-left-5"> USUÁRIO </th>
-                <th style="text-align: left;" class="padding-left-5"> MOTORISTA </th>
+                <th style="text-align: left;" class="padding-left-5"> ENTREGA </th>
+                <th style="text-align: left;" class="padding-left-5"> RECOLHE </th>
                 <th style="text-align: left;" class="padding-left-5"> </th>
                 <th style="text-align: left;" class="padding-left-5"> </th>
             </thead>
             <tbody>
                 <tr *ngFor="let element of dataSource">
-                    <td>
+                    <td style="width: 15%;">
                         <div class="padding-left-5">
                             {{element.equipament.name}}
                         </div>
                     </td>
-                    <td>
+                    <td class="cell-hyphens" style="width: 15%">
                         <div *ngFor="let item of element.calendars">
                             <div class="row padding-left-5" (click)="openDialog(item)">
+                                {{showSpecifications(item)}}
+                            </div>
+                        </div>
+                    </td>
+                    <td class="cell-hyphens" style="width: 30%">
+                        <div *ngFor="let item of element.calendars">
+                            <div class="row padding-left-5" (click)="openDialog(item)">
+                                
                                 {{showClientCity(item)}}
+                            </div>
+                            <div class="row padding-left-5" (click)="openDialog(item)">
+                                
+                                {{showAddress(item)}}
                             </div>
                         </div>
                     </td>
@@ -83,9 +99,16 @@
                         </div>
                     </td>
                     <td>
-                        <div *ngFor="let item of element.calendars" (click)="openDialogDriver(item)">
+                        <div *ngFor="let item of element.calendars" (click)="openDialogDriver(item,false)">
                             <div class="row padding-left-5">
                                 {{item.driver?.name}}
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngFor="let item of element.calendars" (click)="openDialogDriver(item,true)">
+                            <div class="row padding-left-5">
+                                {{item.driverCollects?.name}}
                             </div>
                         </div>
                     </td>

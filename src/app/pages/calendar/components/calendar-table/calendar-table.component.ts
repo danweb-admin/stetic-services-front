@@ -127,6 +127,7 @@ import { UserService } from 'src/app/shared/services/user.service';
       let date = this.time.format('YYYY-MM-DD');
       this.calendarService.getCalendarByDay(date).subscribe((resp: any) => {
         this.dataSource = resp;
+        
       });
     }
 
@@ -163,13 +164,14 @@ import { UserService } from 'src/app/shared/services/user.service';
       });
     }
 
-    openDialogDriver(element: Calendar){
+    openDialogDriver(element: Calendar, isCollect: boolean){
       let isDriver = true;
+      
       const dialogRef = this.dialog.open(PersonDialogUpdateComponent, {
         width: '400px',
         height: '250px',
         disableClose: true,
-        data: {element, isDriver}
+        data: {element, isDriver, isCollect}
       });
   
       dialogRef.afterClosed().subscribe(result => {
@@ -258,24 +260,37 @@ import { UserService } from 'src/app/shared/services/user.service';
       return start + ' - ' + end;
     }
 
+    showAddress(item){
+
+      let ret = [];
+      if (item.noCadastre){
+        return ''
+      }else{
+        ret.push(item.client.address + ', ' + item.client.number)
+        ret.push(item.client.complement)
+        ret.push(item.client.neighborhood)
+      }
+      
+      return ret.join(' - ');
+    }
+
     showClientCity(item){
       let ret = [];
       if (item.noCadastre){
         ret.push(item.temporaryName);
       }else{
-        let split = item.client.name.split(' ');
-        if (split.length > 1){
-          ret.push(split[0] + ' ' + split[1]);
-        }else{
-          ret.push(split[0]);
-        }
+        ret.push(item.client.name)
         ret.push(item.client.city.nome)
       }
       
+      return ret.join(' - ');
+    }
+
+    showSpecifications(item){
+      let ret = [];
       if (item.calendarSpecifications.filter(x => x.active).length > 0){
         ret.push(this.descriptionSpecifications(item));
       }
-
       return ret.join(' - ');
     }
 

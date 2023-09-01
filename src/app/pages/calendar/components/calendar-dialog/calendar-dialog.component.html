@@ -64,7 +64,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col col-3">
+        <div class="col col-2">
           <mat-form-field appearance="outline">
             <mat-label>Técnica</mat-label>
             <mat-select id="techniqueId" formControlName="techniqueId" [(value)]="form.value.techniqueId">
@@ -72,15 +72,8 @@
             </mat-select>
           </mat-form-field>
         </div>
-        <div class="col col-3">
-          <mat-form-field appearance="outline">
-            <mat-label>Motorista</mat-label>
-            <mat-select formControlName="driverId">
-              <mat-option *ngFor="let item of driverResult" [value]="item.id">{{item.name}}</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <div class="col col-3">
+        
+        <div class="col col-2">
           <mat-form-field appearance="outline">
             <mat-label>Status</mat-label>
             <mat-select formControlName="status">
@@ -89,6 +82,24 @@
               <mat-option value="3">Cancelada</mat-option>
               <mat-option value="4">Excluida</mat-option>
               <mat-option value="5">Pré Agendada</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-2">
+          <mat-form-field appearance="outline">
+            <mat-label>Motorista Entrega</mat-label>
+            <mat-select formControlName="driverId">
+              <mat-option *ngFor="let item of driverResult" [value]="item.id">{{item.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col col-2">
+          <mat-form-field appearance="outline">
+            <mat-label>Motorista Recolhe</mat-label>
+            <mat-select formControlName="driverCollectsId">
+              <mat-option *ngFor="let item of driverResult" [value]="item.id">{{item.name}}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -105,14 +116,14 @@
         </div>
         <div class="col col-3">
           <mat-form-field appearance="outline">
-            <mat-label>Hora Início</mat-label>
-            <input matInput placeholder="Hora de Início" formControlName="startTime1" mask="00:00">
+            <mat-label>Início</mat-label>
+            <input matInput placeholder="Início" formControlName="startTime1" mask="00:00" (blur)="onBlur($event)">
           </mat-form-field>
         </div>
         <div class="col col-3">
           <mat-form-field appearance="outline">
-            <mat-label>Hora Fim</mat-label>
-            <input matInput placeholder="Hora de Encerramento" formControlName="endTime1" mask="00:00">
+            <mat-label>Final</mat-label>
+            <input matInput placeholder="Final" formControlName="endTime1" mask="00:00" (blur)="onBlur($event)">
           </mat-form-field>
         </div>
       </div>

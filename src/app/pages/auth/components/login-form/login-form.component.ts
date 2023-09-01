@@ -24,12 +24,12 @@ export class LoginFormComponent implements OnInit {
   }
 
   public login(): void {
-    // if (this.form.valid) {
-    //   this.authService.login(this.form.value.email, this.form.value.password).subscribe((resp: any) => {
-    //     if (resp?.name){
+    if (this.form.valid) {
+      this.authService.login(this.form.value.email, this.form.value.password).subscribe((resp: any) => {
+        if (resp?.name){
           this.sendLoginForm.emit();
-    //     }
-    //   });
-    // }
+        }
+      });
+    }
   }
 }
