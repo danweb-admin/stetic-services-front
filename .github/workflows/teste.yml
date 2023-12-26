@@ -1,0 +1,35 @@
+name: Dev Build CI
+
+on:
+  push:
+    branches: [ "ajustes" ]
+  pull_request:
+    branches: [ "ajustes" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+    
+    steps:
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+    
+    - name: Install Dependencies
+      run: npm install --force
+
+    - name: Build Application
+      run: npm run build --prod
+    
+    - name: build image and push to docker hub
+      uses: docker/build-push-action@v1.1.0
+      with:
+        username: williambr2022
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        repository: williambr2022/solucao-a
+        tags: ${{ github.sha }}, latest
