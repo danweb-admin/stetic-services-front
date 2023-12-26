@@ -15,13 +15,8 @@ jobs:
         node-version: [16.x]
     
     steps:
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-1
-    - uses: actions/checkout@v3
+    - name: Checkout
+      uses: actions/checkout@v3
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
@@ -34,10 +29,10 @@ jobs:
     - name: Build Application
       run: npm run build --prod
     
-    - name: build image and push to docker hub
-      uses: docker/build-push-action@v1.1.0
+    - name: Deploy
+      if: success()
+      uses: peaceiris/actions-gh-pages@v3
       with:
-        username: williambr2022
-        password: ${{ secrets.DOCKER_PASSWORD }}
-        repository: williambr2022/solucao-a
-        tags: ${{ github.sha }}, latest
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: dist/angular-github-actions
+        enable_jekyll: true
