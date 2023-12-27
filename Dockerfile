@@ -1,11 +1,13 @@
-FROM node:10-alpine as solucao-angular
+# Stage 1
+FROM node:10-alpine as build-step
+RUN mkdir -p /app
 WORKDIR /app
 COPY package.json /app
 RUN npm install
-COPY  . .
-RUN npm run build
+COPY . /app
+RUN npm run build --prod
 
-FROM nginx:alpine
-VOLUME /var/cache/nginx
-COPY --from=solucao-angular app/dist /usr/share/nginx/html
-COPY ./config/nginx.conf /etc/nginx/conf.d/default.conf
+# Stage 2
+FROM nginx:1.17.1-alpine
+COPY --from=build-step /app/docs /usr/share/nginx/html
+

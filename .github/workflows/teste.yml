@@ -3,8 +3,6 @@ name: Dev Build CI
 on:
   push:
     branches: [ "ajustes" ]
-  pull_request:
-    branches: [ "ajustes" ]
 
 jobs:
   build:
@@ -23,16 +21,10 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     
-    - name: Install Dependencies
-      run: npm install --force
-
-    - name: Build Application
-      run: npm run build --prod
-    
-    - name: Deploy
-      if: success()
-      uses: peaceiris/actions-gh-pages@v3
+    - name: build image and push to docker hub
+      uses: docker/build-push-action@v1.1.0
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: dist/angular-github-actions
-        enable_jekyll: true
+        username: ${{ secrets.DOCKER_USER }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        repository: ${{ secrets.DOCKER_USER }}/demo-agenda-front
+        tags: ${{ github.sha }}, latest
