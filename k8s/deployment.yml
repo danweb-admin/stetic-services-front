@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: demo-danweb-front
-          image: williambr2022/demo-danweb-front:latest
+          image: williambr2022/demo-agenda-front:latest
           ports:
             - containerPort: 80
           imagePullPolicy: Always
