@@ -52,7 +52,3 @@ jobs:
           git commit -am "change image tag"
       - name: push
         uses: ad-m/github-push-action@master
-        with:
-          force: true
-          github_token: ${{ secrets.TOKEN_GITHUB }}
-          branch: ${{ github.ref }}
