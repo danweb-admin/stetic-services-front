@@ -44,7 +44,7 @@ jobs:
         run: |
           cd k8s
           kustomize edit set image demo-agenda-front=williambr2022/demo-agenda-front:${{ github.sha }}
-          cat kustomization.yml
+          cat kustomization.yaml
       - name: commit
         run: |
           git config --local user.email "action@github.com"
