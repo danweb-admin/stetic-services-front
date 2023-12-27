@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- deployment.yaml
+- service.yaml
+
+namespace: demo-danweb
+
+images:
+- name: demo-agenda-front
+  newName: williambr2022/demo-agenda-front
+  newTag: 9601b7dd062a4f54d47c79ee85affd6689eafb6f
