@@ -1,8 +1,8 @@
-name: Dev Build CI
+name: CD
 
 on:
   push:
-    branches: [ "ajustes" ]
+    branches: [ "main" ]
 
 jobs:
   build:

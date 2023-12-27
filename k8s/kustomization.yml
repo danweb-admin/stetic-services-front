@@ -7,6 +7,6 @@ resources:
 namespace: demo-danweb
 
 images:
-- name: demo-danweb-front
-  newName: williambr2022/demo-danweb-front
+- name: demo-agenda-front
+  newName: williambr2022/demo-agenda-front
   newTag: 9601b7dd062a4f54d47c79ee85affd6689eafb6f
