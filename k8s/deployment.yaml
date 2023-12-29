@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment 
 metadata:
-  name: demo-danweb-front
+  name: demo-agenda-front
   namespace: demo-danweb
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: demo-danweb-front
+      app: demo-agenda-front
   template:
     metadata:
       labels:
-        app: demo-danweb-front
+        app: demo-agenda-front
     spec:
       containers:
-        - name: demo-danweb-front
-          image: williambr2022/demo-agenda-front:latest
+        - name: demo-agenda-front
+          image: williambr2022/demo-agenda-front
           ports:
             - containerPort: 80
           imagePullPolicy: Always
