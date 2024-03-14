@@ -3,16 +3,27 @@
       <h5 class="generate-contract-table__title">Lista de Locações</h5>
 
       <div class="row">
-        <button mat-icon-button (click)="today()">
-            HOJE
-        </button>
+          <div class="button-hoje" >
+            <button mat-icon-button (click)="lastDay()">
+                <mat-icon>arrow_back_ios</mat-icon>
+            </button>
+            <button mat-icon-button (click)="today()">
+                HOJE
+            </button>
+            <button mat-icon-button (click)="followingDay()">
+                <mat-icon>arrow_forward_ios</mat-icon>
+            </button>
+          </div>
         
-        <div class="generate-contract-table-wrapper__search" style="float: left;">
-            <input matInput class="generate-contract-table-wrapper__search-input" [matDatepicker]="dp"   #inputSearch (dateInput)="applyFilter($event)" style="visibility: hidden;">
+        
+        <div class="generate-contract-table-wrapper__search" style="float: left; width: 235px;">
+            
+            <input matInput class="generate-contract-table-wrapper__search-input" [matDatepicker]="dp"   #inputSearch (dateInput)="applyFilter($event)" style="visibility: hidden; width: 1px;">
             <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
             <mat-datepicker #dp></mat-datepicker>
+            {{time | date:'dd/MM/yyyy EE' : '' : 'pt-BR'}}
         </div>
-        {{time | date:'dd/MM/yyyy EE' : '' : 'pt-BR'}}
+        
     </div>
     </mat-card-title>
   
