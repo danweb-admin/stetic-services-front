@@ -73,6 +73,8 @@ import { ClientsService } from '../../../../shared/services/clients.service';
         ie: [this.data.element?.ie || ''],
         cpf: [this.data.element?.cpf || ''],
         rg: [this.data.element?.rg || ''],
+        discount: [this.data.element?.discount || 0],
+        freight: [this.data.element?.freight || 0],
         secretary: [this.data.element?.secretary || ''],
         complement: [this.data.element?.complement || ''],
         cityId: [this.data.element?.cityId || '', Validators.required],

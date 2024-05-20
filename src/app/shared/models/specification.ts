@@ -4,4 +4,6 @@ export interface Specification {
     active: boolean;
     single: boolean;
     amount: boolean;
+    hasConsumable: boolean;
+    value: number;
   }

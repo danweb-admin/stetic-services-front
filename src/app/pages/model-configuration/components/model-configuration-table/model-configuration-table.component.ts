@@ -22,7 +22,6 @@ export class ModelConfigurationTableComponent implements OnInit {
   loadModels(){
     this.modelService.loadModels().subscribe((resp: any[]) => {
       this.dataSource = resp;
-      console.log(resp);
     });
   }
 

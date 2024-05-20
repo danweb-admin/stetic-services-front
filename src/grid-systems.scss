@@ -52,12 +52,26 @@
     .col-2 {
         width: 50%;
     }
+
+    .col-4 {
+        width: 25%;
+    }
+    .col-5 {
+        width: 20%;
+    }
 }
 
 /* tres colunas */
 @media (min-width: 728px) {
     .col-3 {
         width: 33.3333%;
+    }
+
+    .col-4 {
+        width: 25%;
+    }
+    .col-5 {
+        width: 20%;
     }
 }
 
@@ -69,5 +83,12 @@
 
     .col-sidebar {
         width: 40%;
+    }
+
+    .col-4 {
+        width: 25%;
+    }
+    .col-5 {
+        width: 20%;
     }
 }
