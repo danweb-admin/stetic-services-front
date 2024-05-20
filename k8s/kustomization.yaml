@@ -4,9 +4,9 @@ resources:
 - deployment.yaml
 - service.yaml
 
-namespace: demo-danweb
+namespace: stetic-services
 
 images:
-- name: williambr2022/demo-agenda-front
-  newName: williambr2022/demo-agenda-front
+- name: williambr2022/dstetic-services-front
+  newName: williambr2022/dstetic-services-front
   newTag: e3c6c3155aa75472e4b0ff4af6ba039b063321d3

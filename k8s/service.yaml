@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: demo-agenda-front-svc
+  name: stetic-services-front-svc
   namespace: demo-danweb
   labels:
-    app: demo-agenda-front
+    app: stetic-services-front
 spec:
   ports:
   - protocol: TCP
     port: 80
   selector:
-    app: demo-agenda-front
+    app: stetic-services-front
