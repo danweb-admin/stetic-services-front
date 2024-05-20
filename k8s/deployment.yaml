@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment 
 metadata:
   name: stetic-services-front
-  namespace: demo-danweb
+  namespace: stetic-services
 spec:
   replicas: 1
   selector:

@@ -2,36 +2,36 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ingress-hosts
-  namespace: demo-danweb
+  namespace: stetic-services
   annotations:
     kubernetes.io/ingress.class: "nginx"
-    cert-manager.io/cluster-issuer: "letsencrypt-demo-danweb"
+    cert-manager.io/cluster-issuer: "letsencrypt-stetic-services"
 spec:
   tls:
   - hosts:
-    - "demo-agendanweb.api-danweb-softwares.click"
-    secretName: "demo-agendanweb-tls"
+    - "stetic-services.api-danweb-softwares.click"
+    secretName: "stetic-services-tls"
   - hosts:
-    - "demo-agenda.app-danweb-softwares.click"
-    secretName: "demo-agendanweb-front-tls"
+    - "stetic-services.app-danweb-softwares.click"
+    secretName: "stetic-services-front-tls"
   rules:
-  - host: demo-agendanweb.api-danweb-softwares.click
+  - host: stetic-services.api-danweb-softwares.click
     http:
       paths:
       - pathType: Prefix
         path: "/"
         backend:
           service:
-            name: demo-agenda-back-svc
+            name: stetic-services-back-svc
             port: 
               number: 80
-  - host: demo-agenda.app-danweb-softwares.click
+  - host: stetic-services.app-danweb-softwares.click
     http:
       paths:
       - pathType: Prefix
         path: "/"
         backend:
           service:
-            name: demo-agenda-front-svc
+            name: stetic-services-front-svc
             port: 
               number: 80
