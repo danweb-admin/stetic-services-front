@@ -68,13 +68,13 @@
                         <div class="row" style="margin-top: 10px;"> 
                             
                             <div class="col col-2">
-                                <mat-form-field appearance="outline">
+                                <mat-form-field appearance="outline" style="width: 90px;">
                                     <mat-label>Quantidade</mat-label>
                                     <input matInput placeholder="Quantidade" formControlName="amount"  onkeypress='return event.charCode >= 48 && event.charCode <= 57' (blur)="changeValueEquipamentConsumables(i)">
                                 </mat-form-field>
                             </div>
                             <div class="col col-2">
-                                <mat-form-field appearance="outline">
+                                <mat-form-field appearance="outline" style="width: 90px;">
                                     <mat-label>Valor Total</mat-label>
                                     <input matInput placeholder="Valor Total" formControlName="totalValue" prefix="R$ " mask="separator.2" thousandSeparator="." disabled>
                                 </mat-form-field>
@@ -102,25 +102,27 @@
                         </div>
                         
                         <div class="row" style="margin-top: 10px;">
-                            <div class="col col-4">
+                            <div class="col col-2">
                                 <mat-form-field appearance="outline" style="width: 90px;">
                                     <mat-label>Inicial</mat-label>
                                     <input matInput placeholder="Inicial" formControlName="initial"  onkeypress='return event.charCode >= 48 && event.charCode <= 57' (blur)="changeValueSpecificationConsumables(i)" >
                                 </mat-form-field>
                             </div>
-                            <div class="col col-4">
+                            <div class="col col-2">
                                 <mat-form-field appearance="outline" style="width: 90px;">
                                     <mat-label>Final</mat-label>
                                     <input matInput placeholder="Final" formControlName="final"  onkeypress='return event.charCode >= 48 && event.charCode <= 57' (blur)="changeValueSpecificationConsumables(i)">
                                 </mat-form-field>
                             </div>
-                            <div class="col col-4">
+                        </div>
+                        <div class="row">
+                            <div class="col col-2">
                                 <mat-form-field appearance="outline" style="width: 90px;">
                                     <mat-label>Valor</mat-label>
                                     <input matInput placeholder="Valor" formControlName="value" prefix="R$ " mask="separator.2" thousandSeparator="." >
                                 </mat-form-field>
                             </div>
-                            <div class="col col-4">
+                            <div class="col col-2">
                                 <mat-form-field appearance="outline" style="width: 90px;">
                                     <mat-label>Valor Total</mat-label>
                                     <input matInput placeholder="Valor Total" formControlName="totalValue" prefix="R$ " mask="separator.2" thousandSeparator=".">
