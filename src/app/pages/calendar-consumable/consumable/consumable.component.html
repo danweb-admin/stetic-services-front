@@ -5,69 +5,9 @@
     
     <mat-card-content >
         <mat-accordion class="example-headers-align" multi>
-            
-            <!-- #enddocregion multi -->
-            <mat-expansion-panel *ngFor="let locacao of locacoes">
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        {{locacao.client.name.substring(0,20)}}
-                    </mat-panel-title>
-                    <mat-panel-description>
-                        {{showTime(locacao)}}
-                    </mat-panel-description>
-                </mat-expansion-panel-header>
-                
-                <div class="row">
-                    <mat-label>Aparelho: </mat-label>
-                    <mat-label>{{locacao.equipament.name}}</mat-label>
-                </div>
-                <div class="row">
-                    <mat-label>Ponteiras: </mat-label>
-                    <mat-label>{{showSpecifications(locacao)}}</mat-label>
-                </div>
-                    
-                
-                <mat-accordion class="example-headers-align" multi>
-                    <mat-expansion-panel >
-                        <mat-expansion-panel-header>
-                            <mat-panel-title>
-                                Consumíveis do Aparelho
-                            </mat-panel-title>
-                        </mat-expansion-panel-header>
-                        
-                        <mat-form-field>
-                            <mat-label>First name</mat-label>
-                            <input matInput>
-                        </mat-form-field>
-                        
-                        <mat-form-field>
-                            <mat-label>Age</mat-label>
-                            <input matInput type="number" min="1">
-                        </mat-form-field>
-                        
-                    </mat-expansion-panel>
-                </mat-accordion>
-                <mat-accordion class="example-headers-align" multi>
-                    <mat-expansion-panel >
-                        <mat-expansion-panel-header>
-                            <mat-panel-title>
-                                Consumíveis da(s) Ponteira(s)
-                            </mat-panel-title>
-                        </mat-expansion-panel-header>
-                        
-                        <mat-form-field>
-                            <mat-label>First name</mat-label>
-                            <input matInput>
-                        </mat-form-field>
-                        
-                        <mat-form-field>
-                            <mat-label>Age</mat-label>
-                            <input matInput type="number" min="1">
-                        </mat-form-field>
-                        
-                    </mat-expansion-panel>
-                </mat-accordion>
-            </mat-expansion-panel>
+            <ng-container *ngFor="let locacao of locacoes">
+                <app-consumable-forms [calendar]="locacao"></app-consumable-forms>
+              </ng-container>
         </mat-accordion>
     </mat-card-content>
 </mat-card>

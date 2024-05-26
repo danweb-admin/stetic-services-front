@@ -1,11 +1,8 @@
-import { Component, Inject, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { CalendarService } from 'src/app/shared/services/calendar.service';
-import { ToastrService } from 'ngx-toastr';
 import { Calendar } from 'src/app/shared/models/calendar';
-import { Specification } from 'src/app/shared/models/specification';
-import { SpecificationsService } from 'src/app/shared/services/specifications.service';
+import moment from 'moment';
 
 @Component({
     selector: 'app-consumable',
@@ -17,63 +14,22 @@ import { SpecificationsService } from 'src/app/shared/services/specifications.se
     isTravelOn: boolean;
     selectedtype: any;
     locacoes: Calendar[] = [];
-    specificationArray: Specification[];
-
+    time;
 
 
     constructor(
-      private formBuilder: FormBuilder,
-      private toastr: ToastrService,
-      private calendarService: CalendarService,
-      private specificationSerivce: SpecificationsService) {
+      private calendarService: CalendarService) {
+        this.time = moment();
     }
 
     ngOnInit(): void {
-      this.calendarService.getCalendarAll('2024-04-02').subscribe((resp: Calendar[]) => {
-        console.log(resp);
-        
+      console.log('dfosdofosdn');
+      
+      this.time = moment(this.time, 'DD-MM-YYYY', true);
+      let date = this.time.format('YYYY-MM-DD');
+      this.calendarService.getCalendarAll(date).subscribe((resp: any) => {
         this.locacoes = resp;
-      })
-      this.loadSpecifications();
-
-    }
-
-    async loadSpecifications(): Promise<void> {
-      await this.specificationSerivce.loadSpecifications().toPromise().then((data) => {
-        localStorage.setItem('specificationsList',JSON.stringify(data));
-        this.specificationArray = data;
-      }); 
-    }
-
-    showTime(item: Calendar){
-      let start = ''
-      let end = '';
-      if (item.startTime)
-      start = item.startTime.substring(11,16);
-      if (item.endTime)
-      end = item.endTime.substring(11,16)
-      return start + ' - ' + end;
-    }
-
-    showSpecifications(item){
-      let ret = [];
-      if (item.calendarSpecifications.filter(x => x.active).length > 0){
-        ret.push(this.descriptionSpecifications(item));
-      }
-      return ret.join(' - ');
-    }
-
-    descriptionSpecifications(item: Calendar){
-      let retorno = new Array();
-      item.calendarSpecifications.forEach(obj => {
-        if (obj.active === true){
-          let name = this.specificationArray?.find(x => x.id === obj.specificationId);
-          if (name){
-            retorno.push(name.name);
-          }
-        }   
       });
-      return retorno.join(' - ')
+
     }
-    
   }

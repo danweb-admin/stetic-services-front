@@ -18,13 +18,15 @@ import { CalendarService } from 'src/app/shared/services/calendar.service';
 import { TextMaskModule } from 'angular2-text-mask';
 import { ConsumableComponent } from './consumable/consumable.component';
 import { CalendarConsumableRoutingModule } from './calendar-consumable-routing.module';
-import { ConsumablePageComponent } from './consumable-page/consumable-page.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { ConsumableFormsComponent } from './consumable-forms/consumable-forms.component';
+import { CalendarConsumablePageComponent } from './calendar-consumable-page/calendar-consumable-page.component';
 
 @NgModule({
   declarations: [
       ConsumableComponent,
-      ConsumablePageComponent
+      CalendarConsumablePageComponent,
+      ConsumableFormsComponent
   ],
   imports: [
     CommonModule,
