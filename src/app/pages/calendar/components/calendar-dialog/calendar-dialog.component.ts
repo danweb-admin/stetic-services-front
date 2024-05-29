@@ -461,6 +461,7 @@ const moment = _rollupMoment || _moment;
           const currentValue = control.value.toString();
 				  const newValue  = currentValue.replace(',', '.');
           control.patchValue(newValue);
+          control.enable();
         }
         
       }
@@ -508,7 +509,7 @@ const moment = _rollupMoment || _moment;
       const totalValue = value_ * amount_;
 
       this.calendarEquipamentConsumables.controls[i].get('totalValue').patchValue(totalValue.toFixed(2).replace('.',','))
-
+      this.calculateTotalValue();
     }
 
     changeValueSpecificationConsumables(i){
@@ -526,7 +527,7 @@ const moment = _rollupMoment || _moment;
       const totalValue = (final_ - initial_) * value_;
 
       this.calendarSpecificationConsumables.controls[i].get('totalValue').patchValue(totalValue.toFixed(2).replace('.',','))
-
+      this.calculateTotalValue();
     }
 
     onBlur(input){
@@ -563,14 +564,34 @@ const moment = _rollupMoment || _moment;
     }
 
     calculateTotalValue(){
+      
       let total = 0;
       const freight = this.form.value.freight;
       const discount = this.form.value.discount;
 
+      this.calendarEquipamentConsumables.controls.forEach((control) => {
+				
+        const currentTotalValue = control.get('totalValue').value.toString();
+				const newTotalValue = currentTotalValue.replace(',', '.');
+        
+        
+        total += parseFloat(newTotalValue);
+        console.log('valor equip:' + newTotalValue  );
+			});
+
+      this.calendarSpecificationConsumables.controls.forEach((control) => {
+				
+        const currentTotalValue = control.get('totalValue').value.toString();
+				const newTotalValue = currentTotalValue.replace(',', '.');
+        total += parseFloat(newTotalValue);
+        console.log('valor spec:' + newTotalValue  );
+
+			});
+
       const value = this.form.get('value').value;
       const value_ = parseFloat(value.replace(',','.'));
       
-      total = value_ + freight - discount;
+      total += value_ + freight - discount;
 
       const control = this.form.get('totalValue');
       const newValue  = total.toString().replace('.', ',');
