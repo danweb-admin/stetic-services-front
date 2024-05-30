@@ -9,4 +9,4 @@ namespace: stetic-services
 images:
 - name: williambr2022/stetic-services-front
   newName: williambr2022/stetic-services-front
-  newTag: 3df42370b72e2ccf1e5841ed9977416a18bdc543
+  newTag: a5fc6775d1e0cc59b525d57236617af1478e0b5e
