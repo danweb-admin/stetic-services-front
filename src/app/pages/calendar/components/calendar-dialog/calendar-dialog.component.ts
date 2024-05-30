@@ -297,9 +297,9 @@ const moment = _rollupMoment || _moment;
             id: [ '', Validators.required],
             name: [{value: spec.name, disabled: true}],
             active: [item.active, Validators.required],
-            value: [ item.value.toFixed(2).replace('.',','), Validators.required],
-            initial: [item.initial],
-            final: [item.final ],
+            value:  [{value: item.value.toFixed(2).replace('.',','), disabled: this.inputReadonly}],
+            initial: [{value: item.initial, disabled: this.inputReadonly}],
+            final: [{value: item.final, disabled: this.inputReadonly}],
             specificationId: [item.specificationId],
             calendarId: [null],
             totalValue: [{value: item.totalValue.toFixed(2).replace('.',','), disabled: true }],
@@ -553,7 +553,7 @@ const moment = _rollupMoment || _moment;
       if (ret){
         this.clientService.getValueByEquipament(this.form.value.client.id,this.form.value.equipamentId, this.form.value.startTime1, this.form.value.endTime1).subscribe((resp: number) => {
           for (const field in this.form.controls) { 
-            if (field == "value"){
+            if (field == "value" || field == "totalValue"){
               const control = this.form.get(field);
               const newValue  = resp.toString().replace('.', ',');
               control.patchValue(newValue);

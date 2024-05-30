@@ -23,7 +23,7 @@
     <mat-icon>assignment</mat-icon> Locações
   </mat-list-item>
     <div>
-      <mat-list-item class="ui-element" [style.display]="isOpenLocations ? 'flex' : 'none'"  routerLink="{{routes.CALENDAR}}" routerLinkActive="active">
+      <mat-list-item  *ngIf="isAdmin" class="ui-element" [style.display]="isOpenLocations ? 'flex' : 'none'"  routerLink="{{routes.CALENDAR}}" routerLinkActive="active">
         <div class="circle"></div>Agenda
       </mat-list-item>
       <mat-list-item *ngIf="isAdmin" class="ui-element" [style.display]="isOpenLocations ? 'flex' : 'none'" routerLink="{{routes.SCHEDULES}}" routerLinkActive="active">
@@ -32,11 +32,11 @@
       <mat-list-item *ngIf="isAdmin" class="ui-element" [style.display]="isOpenLocations ? 'flex' : 'none'" routerLink="{{routes.AVAILABILITY}}" routerLinkActive="active">
         <div class="circle"></div>Disponibilidade
       </mat-list-item>
-      <mat-list-item  class="ui-element" [style.display]="isOpenLocations ? 'flex' : 'none'" routerLink="{{routes.CALENDAR_CONSUMABLE}}" routerLinkActive="active">
+      <mat-list-item *ngIf="isAdmin || isDriver" class="ui-element" [style.display]="isOpenLocations ? 'flex' : 'none'" routerLink="{{routes.CALENDAR_CONSUMABLE}}" routerLinkActive="active">
         <div class="circle"></div>Lançar Consumíveis
       </mat-list-item>
     </div>
-    <mat-list-item (click)="openContracts()">
+    <mat-list-item *ngIf="isAdmin" (click)="openContracts()">
       <mat-icon>description</mat-icon> Contratos
     </mat-list-item>
       <div>
